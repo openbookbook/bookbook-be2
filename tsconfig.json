@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "alwaysStrict": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "declaration": true,
@@ -9,7 +10,7 @@
     "incremental": true,
     "module": "commonjs",
     "noFallthroughCasesInSwitch": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "outDir": "./dist",
     "removeComments": true,
     "skipLibCheck": true,
