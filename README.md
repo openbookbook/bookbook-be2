@@ -17,8 +17,14 @@ Started from the NestJS TypeScript starter repository in October 2024.
 
 ## Project setup
 
+Install dependencies:
 ```bash
 $ pnpm install
+```
+
+Setup your environmental variables:
+```bash
+$ cp .env.example .env
 ```
 
 ## Compile and run the project
