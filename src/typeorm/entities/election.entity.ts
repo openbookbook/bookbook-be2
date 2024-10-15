@@ -3,9 +3,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Candidate } from './candidate.entity';
+import { Vote } from './vote.entity';
 
 @Entity()
 export class Election {
@@ -16,6 +19,11 @@ export class Election {
   isCompleted: boolean = false;
   @Column({ length: 127, default: '' })
   name: string;
+
+  @OneToMany(() => Candidate, candidate => candidate.election)
+  candidates: Candidate[];
+  @OneToMany(() => Vote, vote => vote.election)
+  votes: Vote[];
 
   @CreateDateColumn()
   createdAt: Date;
