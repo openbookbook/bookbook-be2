@@ -9,12 +9,11 @@ import { Election } from 'src/typeorm/entities/election.entity';
 export class ElectionService {
   constructor(@InjectRepository(Election) private electionRepository: Repository<Election>) {}
 
-  create(createElectionDto: CreateElectionDto) {
+  async create(createElectionDto: CreateElectionDto) {
     const created = this.electionRepository.create(createElectionDto);
-    console.log({ created });
-    this.electionRepository.insert(created);
+    const inserted = await this.electionRepository.insert(created);
 
-    return created;
+    return inserted.generatedMaps[0];
   }
 
   findAll() {
@@ -23,7 +22,10 @@ export class ElectionService {
   }
 
   findOne(id: number) {
-    return this.electionRepository.findOneBy({ id });
+    return this.electionRepository.findOne({
+      relations: ['candidates'],
+      where: { id },
+    });
   }
 
   update(id: number, updateElectionDto: UpdateElectionDto) {
