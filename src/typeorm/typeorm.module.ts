@@ -18,7 +18,7 @@ import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOpti
             password: process.env.DATABASE_PASSWORD,
             host: process.env.DATABASE_HOST,
             port: parseInt(process.env.DATABASE_PORT),
-            synchronize: process.env.NODE_ENV === 'development',
+            synchronize: process.env.NODE_ENV === 'development', // TODO(culi): Abandon synchronize: 'true'
             entities: [__dirname + '/**/*.entity.{js,ts}'],
           });
           await dataSource.initialize();

@@ -32,9 +32,9 @@ export class Candidate {
   title: string;
 
   @ManyToOne(() => Election, election => election.candidates)
-  @JoinColumn({ name: 'electionId' })
+  @JoinColumn()
   election: Election;
-  @OneToMany(() => Vote, vote => vote.candidate)
+  @OneToMany(() => Vote, vote => vote.candidate, { eager: true })
   votes: Vote[];
 
   @CreateDateColumn()

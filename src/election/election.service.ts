@@ -17,15 +17,11 @@ export class ElectionService {
   }
 
   findAll() {
-    // return `No we're not gonna expose all of our elections you absolute lemon.`;
     return this.electionRepository.find();
   }
 
   findOne(id: number) {
-    return this.electionRepository.findOne({
-      relations: ['candidates'],
-      where: { id },
-    });
+    return this.electionRepository.findOneBy({ id });
   }
 
   update(id: number, updateElectionDto: UpdateElectionDto) {
