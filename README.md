@@ -10,7 +10,7 @@ Started from the NestJS TypeScript starter repository in October 2024.
 * [prettier](https://prettier.io/) for code formatting.
 * [TypeScript](https://www.typescriptlang.org/) for type safety.
 * [TypeORM](https://typeorm.io/) is the standard ORM for NestJS.
-* [MySQL](https://www.mysql.com/) as our database.
+* [MySQL](https://www.mysql.com/) as our database. (sorry)
 
 Soon:
 - [Swagger](https://swagger.io/)
@@ -26,6 +26,13 @@ $ pnpm install
 Setup your environmental variables:
 ```bash
 $ cp .env.example .env
+```
+
+### Database
+Make sure to install MySQL on your machine for local development. Then, create a new database with the name and credentials specified in your `.env` file.
+
+```sql
+CREATE DATABASE IF NOT EXISTS bookbook_dev;
 ```
 
 ## Compile and run the project

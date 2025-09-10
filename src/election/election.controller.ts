@@ -9,7 +9,6 @@ export class ElectionController {
 
   @Post()
   create(@Body() createElectionDto: CreateElectionDto) {
-    console.log('createElectionDto', createElectionDto);
     return this.electionService.create(createElectionDto);
   }
 

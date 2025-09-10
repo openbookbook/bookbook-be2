@@ -9,7 +9,7 @@ export class VoteController {
 
   @Post()
   create(@Body() createVoteDto: CreateVoteDto) {
-    return this.voteService.create(createVoteDto);
+    return this.voteService.upsert(createVoteDto);
   }
 
   @Get()

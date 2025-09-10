@@ -29,7 +29,7 @@ export class VoteService {
   }
 
   upsert(createVoteDto: CreateVoteDto) {
-    this.voteRepository.upsert(createVoteDto, ['author', 'candidateId', 'electionId']);
+    this.voteRepository.upsert(createVoteDto, ['author', 'candidate', 'election']);
   }
 
   remove(id: number) {

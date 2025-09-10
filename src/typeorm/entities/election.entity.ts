@@ -20,9 +20,9 @@ export class Election {
   @Column({ length: 127, default: '' })
   name: string;
 
-  @OneToMany(() => Candidate, candidate => candidate.election)
+  @OneToMany(() => Candidate, candidate => candidate.election, { eager: true })
   candidates: Candidate[];
-  @OneToMany(() => Vote, vote => vote.election)
+  @OneToMany(() => Vote, vote => vote.election, { eager: true })
   votes: Vote[];
 
   @CreateDateColumn()

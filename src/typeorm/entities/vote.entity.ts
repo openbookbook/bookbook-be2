@@ -9,6 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Candidate } from './candidate.entity';
+import { Election } from './election.entity';
 
 @Entity()
 export class Vote {
@@ -17,15 +18,15 @@ export class Vote {
 
   @Column({ default: '' })
   author: string;
-  @Column({ type: 'decimal', default: 0 })
+  @Column({ type: 'decimal', default: 0, precision: 5, scale: 4 })
   score: number;
 
   @ManyToOne(() => Candidate, candidate => candidate.votes)
-  @JoinColumn({ name: 'candidateId' })
+  @JoinColumn()
   candidate: Candidate;
-  @ManyToOne(() => Candidate, candidate => candidate.votes)
-  @JoinColumn({ name: 'electionId' })
-  election: Candidate;
+  @ManyToOne(() => Election, election => election.votes)
+  @JoinColumn()
+  election: Election;
 
   @CreateDateColumn()
   createdAt: Date;
