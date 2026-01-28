@@ -11,52 +11,39 @@ Started from the NestJS TypeScript starter repository in October 2024.
 * [TypeScript](https://www.typescriptlang.org/) for type safety.
 * [TypeORM](https://typeorm.io/) is the standard ORM for NestJS.
 * [MySQL](https://www.mysql.com/) as our database. (sorry)
+* [AWS RDS](https://aws.amazon.com/rds/) to host our database.
 
 Soon:
 - [Swagger](https://swagger.io/)
 - [Zod](https://zod.dev/)
 
-## Project setup
-
-Install dependencies:
+## Project setup for local development
 ```bash
-$ pnpm install
+# install dependencies
+pnpm install
+
+# copy environmental variables
+cp .env.example .env
+
+# run the database in Docker
+docker compose up database -d
+
+# start the API. Defaults to localhost:8001
+pnpm run start:dev
 ```
 
-Setup your environmental variables:
-```bash
-$ cp .env.example .env
-```
+### Testing
 
-### Database
-Make sure to install MySQL on your machine for local development. Then, create a new database with the name and credentials specified in your `.env` file.
+unit tests
+ $ `pnpm run test`
 
-```sql
-CREATE DATABASE IF NOT EXISTS bookbook_dev;
-```
+e2e tests
+ $ `pnpm run test:e2e`
 
-## Compile and run the project
+test coverage
+ $ `pnpm run test:cov`
 
-```bash
-# development
-$ pnpm run start
+## Deployment
 
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
+### initial setup (runbook)
+Make sure you have [`aws-cli` installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). Build it with `docker build --platform linux/amd64 -t bookbook-repo .` and push it to Amazon ECR.

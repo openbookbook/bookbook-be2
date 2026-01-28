@@ -6,9 +6,17 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from './typeorm/typeorm.module';
 import { CandidateModule } from './candidate/candidate.module';
 import { VoteModule } from './vote/vote.module';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
-  imports: [ConfigModule.forRoot(), TypeOrmModule, ElectionModule, CandidateModule, VoteModule],
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule,
+    TerminusModule,
+    ElectionModule,
+    CandidateModule,
+    VoteModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
