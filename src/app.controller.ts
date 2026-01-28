@@ -2,6 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 import { HealthCheck, HealthCheckService, TypeOrmHealthIndicator } from '@nestjs/terminus';
 import { AppService } from './app.service';
 
+// TODO: add swagger
 @Controller()
 export class AppController {
   constructor(

@@ -11,6 +11,7 @@ Started from the NestJS TypeScript starter repository in October 2024.
 * [TypeScript](https://www.typescriptlang.org/) for type safety.
 * [TypeORM](https://typeorm.io/) is the standard ORM for NestJS.
 * [MySQL](https://www.mysql.com/) as our database. (sorry)
+* [AWS RDS](https://aws.amazon.com/rds/) to host our database.
 
 Soon:
 - [Swagger](https://swagger.io/)
@@ -32,11 +33,17 @@ pnpm run start:dev
 ```
 
 ### Testing
+
 unit tests
-$ `pnpm run test`
+ $ `pnpm run test`
 
 e2e tests
-$ `pnpm run test:e2e`
+ $ `pnpm run test:e2e`
 
 test coverage
-$ `pnpm run test:cov`
+ $ `pnpm run test:cov`
+
+## Deployment
+
+### initial setup (runbook)
+Make sure you have [`aws-cli` installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). Build it with `docker build --platform linux/amd64 -t bookbook-repo .` and push it to Amazon ECR.
