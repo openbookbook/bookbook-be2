@@ -1,38 +1,31 @@
 ###—————————————————————————————————————#
-## DEV                                 ##
+## BUILD IMAGE                         ##
 #—————————————————————————————————————###
-# Base image
-FROM node:20-alpine as dev
-# Create app directory
+FROM node:20-alpine AS build
 WORKDIR /app
-# Install dependencies
-RUN npm install -g pnpm
 
-# Set environment variables
-ENV NODE_ENV=development
+# install deps with pnpm
+RUN npm install -g pnpm
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+
+# copy code
+COPY . .
+
+# build
+RUN pnpm run build
+RUN pnpm prune --prod
 
 ###—————————————————————————————————————#
-## BUILD                               ##
+## PRODUCTION RUNNER                   ##
 #—————————————————————————————————————###
-# Base image
-FROM node:20-alpine as build
-# Create app directory
+FROM node:20-alpine AS production
 WORKDIR /app
-# Install dependencies
+ENV NODE_ENV=production
 RUN npm install -g pnpm
 
-# Set environment variables
-ENV NODE_ENV=production
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package.json ./
 
-###—————————————————————————————————————#
-## PRODUCTION                          ##
-#—————————————————————————————————————###
-# Base image
-FROM node:20-alpine as prod
-# Create app directory
-WORKDIR /app
-# Install dependencies
-RUN npm install -g pnpm
-
-# Set environment variables
-ENV NODE_ENV=production
+CMD ["node", "dist/main"]

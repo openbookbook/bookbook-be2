@@ -16,47 +16,27 @@ Soon:
 - [Swagger](https://swagger.io/)
 - [Zod](https://zod.dev/)
 
-## Project setup
-
-Install dependencies:
+## Project setup for local development
 ```bash
-$ pnpm install
+# install dependencies
+pnpm install
+
+# copy environmental variables
+cp .env.example .env
+
+# run the database in Docker
+docker compose up database -d
+
+# start the API. Defaults to localhost:8001
+pnpm run start:dev
 ```
 
-Setup your environmental variables:
-```bash
-$ cp .env.example .env
-```
+### Testing
+unit tests
+$ `pnpm run test`
 
-### Database
-Make sure to install MySQL on your machine for local development. Then, create a new database with the name and credentials specified in your `.env` file.
+e2e tests
+$ `pnpm run test:e2e`
 
-```sql
-CREATE DATABASE IF NOT EXISTS bookbook_dev;
-```
-
-## Compile and run the project
-
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
-```
+test coverage
+$ `pnpm run test:cov`
