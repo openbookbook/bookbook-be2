@@ -6,12 +6,12 @@ Started from the NestJS TypeScript starter repository in October 2024.
 
 ### Technologies
 * [NestJS](https://github.com/nestjs/nest) as our backend framework. See [NestJS docs here](https://docs.nestjs.com). Check out [NestJS Devtools here](https://devtools.nestjs.com).
-* [pnpm](https://pnpm.io/) as our package manager.
+* [pnpm](https://pnpm.io/) as our node package manager.
 * [prettier](https://prettier.io/) for code formatting.
 * [TypeScript](https://www.typescriptlang.org/) for type safety.
 * [TypeORM](https://typeorm.io/) is the standard ORM for NestJS.
 * [MySQL](https://www.mysql.com/) as our database. (sorry)
-* [AWS RDS](https://aws.amazon.com/rds/) to host our database.
+* AWS: [RDS](https://aws.amazon.com/rds/) to host our database; [App Runner](https://aws.amazon.com/apprunner/) to host our API; [ECR](https://aws.amazon.com/ecr/) to host our Docker image.
 
 Soon:
 - [Swagger](https://swagger.io/)
@@ -43,7 +43,10 @@ e2e tests
 test coverage
  $ `pnpm run test:cov`
 
-## Deployment
+## Deployment to production
 
-### initial setup (runbook)
-Make sure you have [`aws-cli` installed](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html). Build it with `docker build --platform linux/amd64 -t bookbook-repo .` and push it to Amazon ECR.
+Database is hosted on AWS RDS. Region is `us-east-1`.
+
+The Docker image is pushed to AWS ECR. Build it with `docker build --platform linux/amd64 -t bookbook-repo .`
+
+The API is hosted on AWS App Runner.
